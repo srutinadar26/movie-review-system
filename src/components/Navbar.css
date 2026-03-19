@@ -1,0 +1,337 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, #141414, transparent);
+  z-index: 1000;
+  padding: 1rem 2rem;
+  transition: background-color 0.3s;
+}
+
+.navbar.scrolled {
+  background-color: #141414;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #e50914;
+  text-decoration: none;
+}
+
+.nav-logo span {
+  color: #ffffff;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  flex: 0 1 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: #444;
+}
+
+.search-button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  background-color: #e50914;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.search-button:hover {
+  background-color: #f40612;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #e50914;
+}
+
+/* Auth Buttons Container */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* This adds the gap between login and signup */
+}
+
+/* Login Button */
+.nav-link.login {
+  background: transparent;
+  border: 1px solid #e50914;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.nav-link.login:hover {
+  background: rgba(229, 9, 20, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Sign Up Button */
+.nav-link.register {
+  background: #e50914;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.nav-link.register:hover {
+  background: #ff4d4d;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+/* User Menu */
+.user-menu {
+  position: relative;
+}
+
+.user-menu-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #333;
+  border: none;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.user-menu-button:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+
+.user-avatar {
+  font-size: 1.2rem;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 8px;
+  min-width: 200px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.8rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+  background: #333;
+  padding-left: 1.5rem;
+}
+
+.dropdown-item.logout:hover {
+  background: #e50914;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+  }
+
+  .search-form {
+    order: 3;
+    flex: 1 1 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .auth-buttons {
+    gap: 0.5rem; /* Smaller gap on mobile */
+  }
+
+  .nav-link.login,
+  .nav-link.register {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .user-menu-button {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .user-name {
+    display: none; /* Hide username on mobile to save space */
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-buttons {
+    gap: 0.3rem; /* Even smaller gap on very small screens */
+  }
+
+  .nav-link.login,
+  .nav-link.register {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  /* Add to your existing Navbar.css */
+
+/* Languages Link - Special styling */
+.nav-link.languages-link {
+  background: linear-gradient(135deg, #e50914, #ff4d4d);
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.nav-link.languages-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+  background: linear-gradient(135deg, #ff4d4d, #e50914);
+}
+
+/* Add to your Navbar.css */
+.nav-link.filter-link {
+  background: #2a2a2a;
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: 1px solid #444;
+}
+
+.nav-link.filter-link:hover {
+  background: #e50914;
+  border-color: #e50914;
+  transform: translateY(-2px);
+}
+
+/* Add to your existing Navbar.css */
+
+/* Filter Movies Link - Prominent styling */
+.nav-link.filter-link {
+  background: linear-gradient(135deg, #e50914, #ff4d4d);
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 700;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid transparent;
+}
+
+.nav-link.filter-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+  background: linear-gradient(135deg, #ff4d4d, #e50914);
+}
+
+.nav-link.filter-link .filter-icon {
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-link.filter-link {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .nav-link.filter-link .filter-icon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link.filter-link span:not(.filter-icon) {
+    display: none; /* Hide text on very small screens, show only icon */
+  }
+  
+  .nav-link.filter-link {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+}

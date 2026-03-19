@@ -1,0 +1,381 @@
+/* src/pages/Favorites.css */
+
+.favorites {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.favorites h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  position: relative;
+  padding-bottom: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.favorites h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #e50914, #ff4d4d);
+  border-radius: 4px;
+}
+
+/* Favorites count */
+.favorites-count {
+  color: #999;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* Favorites Grid - Fixed sizing */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Override MovieCard styles for favorites page */
+.favorites-grid .movie-card {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #1f1f1f;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.favorites-grid .movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.3);
+}
+
+/* Fix poster size */
+.favorites-grid .movie-poster {
+  position: relative;
+  padding-top: 150%; /* 2:3 aspect ratio */
+  width: 100%;
+  overflow: hidden;
+}
+
+.favorites-grid .movie-poster img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.favorites-grid .movie-card:hover .movie-poster img {
+  transform: scale(1.08);
+}
+
+/* Movie info section */
+.favorites-grid .movie-info {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to top, #1f1f1f, #2a2a2a);
+}
+
+.favorites-grid .movie-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8rem;
+}
+
+.favorites-grid .movie-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.favorites-grid .movie-year {
+  color: #999;
+  background: #333;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.favorites-grid .movie-rating {
+  color: #ffd700;
+  font-weight: 600;
+  background: rgba(255, 215, 0, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.favorites-grid .movie-description {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+/* Favorite button styling */
+.favorites-grid .favorite-btn {
+  width: 100%;
+  padding: 0.6rem;
+  background: #333;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+}
+
+.favorites-grid .favorite-btn:hover {
+  background: #e50914;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+.favorites-grid .favorite-btn.active {
+  background: #e50914;
+}
+
+.favorites-grid .favorite-btn.active:hover {
+  background: #ff4d4d;
+}
+
+/* Empty favorites state */
+.empty-favorites {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(145deg, #1a1a1a, #1f1f1f);
+  border-radius: 16px;
+  border: 2px dashed #444;
+  margin-top: 3rem;
+}
+
+.empty-favorites p {
+  color: #999;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.empty-favorites p:first-of-type {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.empty-favorites p:first-of-type::before {
+  content: '🎬';
+  display: block;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.empty-favorites p:last-child {
+  color: #e50914;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Browse Movies Button - FIXED POSITION */
+.browse-movies-btn {
+  margin-top: 1.5rem;
+  padding: 1rem 2.5rem;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.browse-movies-btn:hover {
+  background: #ff4d4d;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .favorites {
+    padding: 1.5rem;
+  }
+  
+  .favorites h1 {
+    font-size: 2rem;
+  }
+  
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .favorites {
+    padding: 1rem;
+  }
+  
+  .favorites h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  .favorites-grid .movie-info {
+    padding: 0.8rem;
+  }
+  
+  .favorites-grid .movie-title {
+    font-size: 0.9rem;
+    min-height: 2.5rem;
+  }
+  
+  .favorites-grid .movie-description {
+    display: none; /* Hide description on mobile to save space */
+  }
+  
+  .favorites-grid .favorite-btn {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .favorites h1 {
+    font-size: 1.5rem;
+  }
+  
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.6rem;
+  }
+  
+  .favorites-grid .movie-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .favorites-grid .movie-year,
+  .favorites-grid .movie-rating {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .empty-favorites {
+    padding: 2rem 1rem;
+  }
+  
+  .empty-favorites p:first-of-type {
+    font-size: 1.2rem;
+  }
+  
+  .empty-favorites p:first-of-type::before {
+    font-size: 3rem;
+  }
+  
+  .empty-favorites p {
+    font-size: 1rem;
+  }
+  
+  .browse-movies-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Animation for grid items */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.favorites-grid > * {
+  animation: fadeInScale 0.5s ease forwards;
+}
+
+/* Stagger animation */
+.favorites-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.favorites-grid > *:nth-child(2) { animation-delay: 0.15s; }
+.favorites-grid > *:nth-child(3) { animation-delay: 0.2s; }
+.favorites-grid > *:nth-child(4) { animation-delay: 0.25s; }
+.favorites-grid > *:nth-child(5) { animation-delay: 0.3s; }
+.favorites-grid > *:nth-child(6) { animation-delay: 0.35s; }
+.favorites-grid > *:nth-child(7) { animation-delay: 0.4s; }
+.favorites-grid > *:nth-child(8) { animation-delay: 0.45s; }
+.favorites-grid > *:nth-child(9) { animation-delay: 0.5s; }
+.favorites-grid > *:nth-child(10) { animation-delay: 0.55s; }
+
+/* Loading state */
+.favorites-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.favorites-loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border: 2px solid #e50914;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

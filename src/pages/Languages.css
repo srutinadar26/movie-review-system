@@ -1,0 +1,453 @@
+.languages-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  background: #141414;
+}
+
+/* Hero Section - Netflix Style */
+.languages-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(180deg, #1f1f1f 0%, #141414 100%);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.languages-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e50914, transparent);
+}
+
+.languages-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.languages-hero p {
+  color: #a9a4a4;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Search Bar - Netflix Style */
+.language-search {
+  position: relative;
+  max-width: 500px;
+  margin: 2rem auto 0;
+}
+
+.language-search input {
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 3rem;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.language-search input:focus {
+  outline: none;
+  border-color: #e50914;
+  background: #333;
+}
+
+.language-search .search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.2rem;
+}
+
+/* Region Filters - Netflix Row Style */
+.region-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.region-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.region-btn {
+  padding: 0.6rem 1.5rem;
+  background: #2a2a2a;
+  border: none;
+  border-radius: 4px;
+  color: #c6b8b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.region-btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+.region-btn.active {
+  background: #e50914;
+  color: #fff;
+}
+
+/* Results Count */
+.results-count {
+  color: #999;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.results-count span {
+  color: #e50914;
+  font-weight: 600;
+}
+
+/* ===== NETFLIX-STYLE LANGUAGE CARDS ===== */
+.language-section {
+  margin-bottom: 3rem;
+}
+
+.region-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  border-left: 4px solid #e50914;
+}
+
+/* Netflix Row Container */
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* Netflix-style Card */
+.language-card {
+  text-decoration: none;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #1f1f1f;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+}
+
+.language-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Netflix-style Hover Effect */
+.language-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.language-card:hover::before {
+  opacity: 1;
+}
+
+.language-card-content {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 180px;
+  justify-content: center;
+}
+
+/* Language Flag/Icon */
+.language-flag {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s;
+}
+
+.language-card:hover .language-flag {
+  transform: scale(1.1);
+}
+
+/* Language Name */
+.language-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.3rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Native Name */
+.language-native {
+  font-size: 0.9rem;
+  color: #876f6f;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+/* Movie Count Badge */
+.language-badge {
+  background: rgba(54, 37, 37, 0.9);
+  color: #fff;
+  padding: 0.2rem 1rem;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+  transition: all 0.3s;
+}
+
+.language-card:hover .language-badge {
+  background: #684345;
+  transform: translateY(-2px);
+}
+
+/* Netflix Play Button Overlay (appears on hover) */
+.language-card .play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 40px;
+  height: 40px;
+  background: #4b383a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.language-card:hover .play-overlay {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Card color variations based on language */
+.language-card[data-color="red"] .language-card-content {
+  background: linear-gradient(135deg, #efefef, #832731);
+}
+.language-card[data-color="blue"] .language-card-content {
+  background: linear-gradient(135deg, #ece7e7, #105de1);
+}
+.language-card[data-color="green"] .language-card-content {
+  background: linear-gradient(135deg, #203120, #67a467);
+}
+.language-card[data-color="orange"] .language-card-content {
+  background: linear-gradient(135deg, #aa6219, #301a04);
+}
+.language-card[data-color="purple"] .language-card-content {
+  background: linear-gradient(135deg, #2a1a2a, #863486);
+}
+.language-card[data-color="gold"] .language-card-content {
+  background: linear-gradient(135deg, #322f19, #95800a);
+}
+.language-card[data-color="teal"] .language-card-content {
+  background: linear-gradient(135deg, #2e403f, #17827a);
+}
+.language-card[data-color="maroon"] .language-card-content {
+  background: linear-gradient(135deg, #503535, #8a1d1d);
+}
+
+/* Fun Fact Section - Netflix Style */
+.language-fun-fact {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: #1f1f1f;
+  border-radius: 4px;
+  border-left: 4px solid #9c272d;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-fun-fact::before {
+  content: '🎬';
+  position: absolute;
+  right: 2rem;
+  bottom: 1rem;
+  font-size: 5rem;
+  opacity: 0.1;
+}
+
+.language-fun-fact h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.language-fun-fact p {
+  color: #999;
+  line-height: 1.6;
+  font-size: 1rem;
+  max-width: 80%;
+}
+
+/* No Languages Found */
+.no-languages {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #1f1f1f;
+  border-radius: 8px;
+  margin: 3rem 0;
+}
+
+.no-languages-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.no-languages-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.no-languages h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.no-languages p {
+  color: #999;
+  margin-bottom: 1.5rem;
+}
+
+.clear-search-btn {
+  padding: 0.8rem 2rem;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.clear-search-btn:hover {
+  background: #9e0606;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .languages-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .languages-page {
+    padding: 1rem;
+  }
+
+  .languages-hero h1 {
+    font-size: 2rem;
+  }
+
+  .languages-hero p {
+    font-size: 1rem;
+  }
+
+  .languages-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .language-card-content {
+    padding: 1rem;
+    min-height: 150px;
+  }
+
+  .language-flag {
+    font-size: 2.5rem;
+  }
+
+  .language-name {
+    font-size: 1.1rem;
+  }
+
+  .language-native {
+    font-size: 0.8rem;
+  }
+
+  .language-fun-fact p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .languages-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .language-card-content {
+    min-height: 130px;
+  }
+
+  .language-flag {
+    font-size: 2rem;
+  }
+
+  .language-name {
+    font-size: 1rem;
+  }
+
+  .language-badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.8rem;
+  }
+
+  .play-overlay {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+}

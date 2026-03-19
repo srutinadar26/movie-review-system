@@ -1,0 +1,168 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { registerUser } from '../services/firebase';
+import toast from 'react-hot-toast';
+import './Login.css'; // Reuse same CSS
+
+const Register = () => {
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [focused, setFocused] = useState({
+    name: false,
+    email: false,
+    password: false,
+    confirm: false
+  });
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validation
+    if (!displayName || !email || !password || !confirmPassword) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
+    setLoading(true);
+    const result = await registerUser(email, password, displayName);
+    
+    if (result.success) {
+      toast.success('🎉 Registration successful! Welcome!');
+      navigate('/');
+    } else {
+      toast.error(result.error);
+    }
+    
+    setLoading(false);
+  };
+
+  const handleFocus = (field) => {
+    setFocused({ ...focused, [field]: true });
+  };
+
+  const handleBlur = (field, value) => {
+    if (!value) {
+      setFocused({ ...focused, [field]: false });
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>🎬 Join MovieReview</h1>
+          <p>Create your account and start reviewing</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className={`form-group ${focused.name ? 'focused' : ''}`}>
+            <label>
+              <i className="fas fa-user"></i> Display Name
+            </label>
+            <div className="input-icon">
+              <i className="fas fa-user"></i>
+              <input
+                type="text"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                onFocus={() => handleFocus('name')}
+                onBlur={(e) => handleBlur('name', e.target.value)}
+                placeholder="Choose a username"
+                disabled={loading}
+              />
+            </div>
+          </div>
+
+          <div className={`form-group ${focused.email ? 'focused' : ''}`}>
+            <label>
+              <i className="fas fa-envelope"></i> Email
+            </label>
+            <div className="input-icon">
+              <i className="fas fa-envelope"></i>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onFocus={() => handleFocus('email')}
+                onBlur={(e) => handleBlur('email', e.target.value)}
+                placeholder="Enter your email"
+                disabled={loading}
+              />
+            </div>
+          </div>
+
+          <div className={`form-group ${focused.password ? 'focused' : ''}`}>
+            <label>
+              <i className="fas fa-lock"></i> Password
+            </label>
+            <div className="input-icon">
+              <i className="fas fa-lock"></i>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onFocus={() => handleFocus('password')}
+                onBlur={(e) => handleBlur('password', e.target.value)}
+                placeholder="Create a password"
+                disabled={loading}
+              />
+            </div>
+            <small className="password-hint">Minimum 6 characters</small>
+          </div>
+
+          <div className={`form-group ${focused.confirm ? 'focused' : ''}`}>
+            <label>
+              <i className="fas fa-lock"></i> Confirm Password
+            </label>
+            <div className="input-icon">
+              <i className="fas fa-lock"></i>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                onFocus={() => handleFocus('confirm')}
+                onBlur={(e) => handleBlur('confirm', e.target.value)}
+                placeholder="Confirm your password"
+                disabled={loading}
+              />
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            className={`auth-button ${loading ? 'loading' : ''}`}
+            disabled={loading}
+          >
+            {loading ? 'Creating account...' : 'Sign Up'}
+          </button>
+        </form>
+
+        <div className="divider">
+          <span>Already have an account?</span>
+        </div>
+
+        <div className="auth-footer">
+          <p>
+            <Link to="/login">Sign in here</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Register;

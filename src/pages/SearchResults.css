@@ -1,0 +1,266 @@
+.search-results {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.search-results h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.search-results h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #e50914;
+  border-radius: 2px;
+}
+
+/* Results Grid */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* No Results State */
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #1f1f1f;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.no-results p {
+  font-size: 1.2rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+.no-results p:first-child {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.no-results p:last-child {
+  color: #e50914;
+  font-size: 1rem;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: #e50914;
+}
+
+.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border: 2px solid #e50914;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.error {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #1f1f1f;
+  border-radius: 8px;
+  margin: 2rem 0;
+  color: #e50914;
+  font-size: 1.2rem;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1rem 0;
+}
+
+.pagination button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 4px;
+  background: #e50914;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 120px;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #f40612;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+.pagination button:disabled {
+  background: #333;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination span {
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.5rem 1.5rem;
+  background: #1f1f1f;
+  border-radius: 4px;
+  border: 1px solid #333;
+}
+
+/* Search Info */
+.search-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-info p {
+  color: #999;
+  font-size: 1rem;
+}
+
+.search-info p span {
+  color: #e50914;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .search-results {
+    padding: 1.5rem;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-results {
+    padding: 1rem;
+  }
+
+  .search-results h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+
+  .pagination button {
+    padding: 0.6rem 1.5rem;
+    min-width: 100px;
+    font-size: 0.9rem;
+  }
+
+  .pagination span {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .search-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-results h2 {
+    font-size: 1.2rem;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .pagination button {
+    padding: 0.5rem 1rem;
+    min-width: 80px;
+    font-size: 0.8rem;
+  }
+
+  .no-results {
+    padding: 2rem 1rem;
+  }
+
+  .no-results p:first-child {
+    font-size: 1.2rem;
+  }
+
+  .no-results p {
+    font-size: 1rem;
+  }
+}
+
+/* Animation for Results */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.results-grid > * {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Stagger animation for children */
+.results-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.results-grid > *:nth-child(2) { animation-delay: 0.2s; }
+.results-grid > *:nth-child(3) { animation-delay: 0.3s; }
+.results-grid > *:nth-child(4) { animation-delay: 0.4s; }
+.results-grid > *:nth-child(5) { animation-delay: 0.5s; }
+.results-grid > *:nth-child(6) { animation-delay: 0.6s; }
+.results-grid > *:nth-child(7) { animation-delay: 0.7s; }
+.results-grid > *:nth-child(8) { animation-delay: 0.8s; }
+.results-grid > *:nth-child(9) { animation-delay: 0.9s; }
+.results-grid > *:nth-child(10) { animation-delay: 1s; }

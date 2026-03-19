@@ -1,0 +1,162 @@
+.recommendations {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.recommendations h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.recommendations h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #e50914, #ff4d4d);
+  border-radius: 2px;
+}
+
+.welcome-message {
+  background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+  border-left: 4px solid #e50914;
+}
+
+.welcome-message h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.welcome-message p {
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.recommendation-section {
+  margin-bottom: 4rem;
+}
+
+.recommendation-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Genre Section */
+.genre-section {
+  margin-bottom: 4rem;
+}
+
+.genre-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.genre-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.genre-btn {
+  padding: 0.8rem 1.5rem;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.genre-btn:hover {
+  background: #e50914;
+  border-color: #e50914;
+  transform: translateY(-2px);
+}
+
+.genre-btn.active {
+  background: #e50914;
+  border-color: #e50914;
+}
+
+.genre-movies {
+  margin-top: 2rem;
+}
+
+.genre-movies h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #1f1f1f;
+  border-radius: 12px;
+  border: 2px dashed #444;
+}
+
+.empty-state p {
+  color: #999;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p:first-child {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .recommendations {
+    padding: 1rem;
+  }
+
+  .recommendations h1 {
+    font-size: 2rem;
+  }
+
+  .welcome-message h2 {
+    font-size: 1.5rem;
+  }
+
+  .recommendation-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .genre-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+}
