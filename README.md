@@ -184,6 +184,3 @@ Supported platforms:
 For educational and portfolio use.
 
 ---
-
-* add **GitHub badges + live demo + screenshots section**
-* or convert this into a **perfect 2-line resume bullet + LinkedIn post** that gets attention instantly 🚀
