@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 03d0656247b9da87d10d507a8ae5b55677ed2623
 # 🎬 Movie Review System
 
 ---
@@ -185,6 +188,7 @@ Supported platforms:
 For educational and portfolio use.
 
 ---
+<<<<<<< HEAD
 =======
 # Getting Started with Create React App
 
@@ -257,3 +261,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 >>>>>>> 88e1f63 (Initial commit - Movie Review System)
+=======
+>>>>>>> 03d0656247b9da87d10d507a8ae5b55677ed2623
