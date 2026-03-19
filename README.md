@@ -184,7 +184,3 @@ Supported platforms:
 For educational and portfolio use.
 
 ---
-
->>>>>>> 88e1f63 (Initial commit - Movie Review System)
-=======
->>>>>>> 03d0656247b9da87d10d507a8ae5b55677ed2623
