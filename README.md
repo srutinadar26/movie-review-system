@@ -171,7 +171,7 @@ Supported platforms:
 
 | 👤 Profile | ❤️ Favorites |
 |-----------|-------------|
-| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Profile.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Favourites.png) |
+| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Profile.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Favorites.png) |
 
 | ⭐ Reviews |
 |-----------|
