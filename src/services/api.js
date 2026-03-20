@@ -4,62 +4,75 @@ const API_KEY = '8df1a16f7f310b78a1c9e977430bef71';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
+// Create axios instance with timeout
 const api = axios.create({
   baseURL: BASE_URL,
+  timeout: 10000, // 10 second timeout
   params: {
     api_key: API_KEY,
     language: 'en-US',
   },
 });
 
+// Add retry logic
+const retryRequest = async (fn, retries = 3) => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      console.log(`Attempt ${i + 1} failed, retrying...`);
+      if (i === retries - 1) throw error;
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds
+    }
+  }
+};
+
 export const getPopularMovies = async (page = 1) => {
   try {
-    const response = await api.get('/movie/popular', {
-      params: { page },
-    });
+    const response = await retryRequest(() => 
+      api.get('/movie/popular', { params: { page } })
+    );
     return response.data;
   } catch (error) {
     console.error('Error fetching popular movies:', error);
-    throw error;
+    // Return empty data instead of throwing
+    return { results: [], total_pages: 1, total_results: 0 };
   }
 };
 
-// ADD THIS - Get Top Rated Movies
 export const getTopRatedMovies = async (page = 1) => {
   try {
-    const response = await api.get('/movie/top_rated', {
-      params: { page },
-    });
+    const response = await retryRequest(() => 
+      api.get('/movie/top_rated', { params: { page } })
+    );
     return response.data;
   } catch (error) {
     console.error('Error fetching top rated movies:', error);
-    throw error;
+    return { results: [], total_pages: 1, total_results: 0 };
   }
 };
 
-// ADD THIS - Get Upcoming Movies
 export const getUpcomingMovies = async (page = 1) => {
   try {
-    const response = await api.get('/movie/upcoming', {
-      params: { page },
-    });
+    const response = await retryRequest(() => 
+      api.get('/movie/upcoming', { params: { page } })
+    );
     return response.data;
   } catch (error) {
     console.error('Error fetching upcoming movies:', error);
-    throw error;
+    return { results: [], total_pages: 1, total_results: 0 };
   }
 };
 
-// ADD THIS - Get Now Playing Movies
 export const getNowPlayingMovies = async (page = 1) => {
   try {
-    const response = await api.get('/movie/now_playing', {
-      params: { page },
-    });
+    const response = await retryRequest(() => 
+      api.get('/movie/now_playing', { params: { page } })
+    );
     return response.data;
   } catch (error) {
     console.error('Error fetching now playing movies:', error);
-    throw error;
+    return { results: [], total_pages: 1, total_results: 0 };
   }
 };
 
@@ -71,7 +84,7 @@ export const searchMovies = async (query, page = 1) => {
     return response.data;
   } catch (error) {
     console.error('Error searching movies:', error);
-    throw error;
+    return { results: [], total_pages: 1, total_results: 0 };
   }
 };
 
@@ -85,7 +98,7 @@ export const getMovieDetails = async (movieId) => {
     return response.data;
   } catch (error) {
     console.error('Error fetching movie details:', error);
-    throw error;
+    return null;
   }
 };
 
@@ -147,13 +160,11 @@ export const discoverMovies = async (filters = {}, page = 1) => {
       params.with_genres = filters.genre;
     }
 
-    console.log('Discover params:', params);
-
     const response = await api.get('/discover/movie', { params });
     return response.data;
   } catch (error) {
     console.error('Error discovering movies:', error);
-    throw error;
+    return { results: [], total_pages: 1, total_results: 0 };
   }
 };
 
