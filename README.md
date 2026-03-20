@@ -159,12 +159,23 @@ Supported platforms:
 
 ---
 
-## 📌 Future Enhancements
+## 📸 Screenshots
 
-* Password reset flow
-* Email verification
-* Social sharing
-* Watch party feature
+| 🏠 Home | 🎬 Trailer |
+|--------|-----------|
+| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Home.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Trailer.png) |
+
+| 🔍 Filter | 🌐 Languages |
+|----------|-------------|
+| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Filter.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Languages.png) |
+
+| 👤 Profile | ❤️ Favorites |
+|-----------|-------------|
+| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Profile.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Favourites.png) |
+
+| ⭐ Reviews |
+|-----------|
+| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Reviews.png) |
 
 ---
 
