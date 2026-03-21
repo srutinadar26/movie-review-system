@@ -158,26 +158,34 @@ Supported platforms:
 * Netlify
 
 ---
-
 ## 📸 Screenshots
+
+### 🎥 Explore the Experience
 
 | 🏠 Home | 🎬 Trailer |
 |--------|-----------|
-| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Home.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Trailer.png) |
+| ![](./screenshots/Home.png) | ![](./screenshots/Trailer.png) |
+
+| 🎭 Cast | 🎞️ Movies |
+|--------|-----------|
+| ![](./screenshots/Cast.png) | ![](./screenshots/Movies.png) |
 
 | 🔍 Filter | 🌐 Languages |
 |----------|-------------|
-| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Filter.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Languages.png) |
+| ![](./screenshots/Filter.png) | ![](./screenshots/Languages.png) |
 
 | 👤 Profile | ❤️ Favorites |
 |-----------|-------------|
-| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Profile.png) | ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Favorites.png) |
+| ![](./screenshots/Profile.png) | ![](./screenshots/Favorites.png) |
 
-| ⭐ Reviews |
-|-----------|
-| ![](https://raw.githubusercontent.com/srutinadar26/movie-review-system/main/screenshots/Reviews.png) |
+| ⭐ Ratings | 📝 Reviews |
+|----------|------------|
+| ![](./screenshots/Ratings.png) | ![](./screenshots/Reviews.png) |
 
----
+| 🎯 Recommendations | 📊 Activity |
+|------------------|------------|
+| ![](./screenshots/Recommendations.png) | ![](./screenshots/Activity.png) |
+
 
 ## 🏆 Highlights
 
