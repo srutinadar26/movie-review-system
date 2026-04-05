@@ -158,15 +158,34 @@ Supported platforms:
 * Netlify
 
 ---
+## 📸 Screenshots
 
-## 📌 Future Enhancements
+### 🎥 Explore the Experience
 
-* Password reset flow
-* Email verification
-* Social sharing
-* Watch party feature
+| 🏠 Home | 🎬 Trailer |
+|--------|-----------|
+| ![](./screenshots/Home.png) | ![](./screenshots/Trailer.png) |
 
----
+| 🎭 Cast | 🎞️ Movies |
+|--------|-----------|
+| ![](./screenshots/Cast.png) | ![](./screenshots/Movies.png) |
+
+| 🔍 Filter | 🌐 Languages |
+|----------|-------------|
+| ![](./screenshots/Filter.png) | ![](./screenshots/Languages.png) |
+
+| 👤 Profile | ❤️ Favorites |
+|-----------|-------------|
+| ![](./screenshots/Profile.png) | ![](./screenshots/Favorites.png) |
+
+| ⭐ Ratings | 📝 Reviews |
+|----------|------------|
+| ![](./screenshots/Ratings.png) | ![](./screenshots/Reviews.png) |
+
+| 🎯 Recommendations | 📊 Activity |
+|------------------|------------|
+| ![](./screenshots/Recommendations.png) | ![](./screenshots/Activity.png) |
+
 
 ## 🏆 Highlights
 
