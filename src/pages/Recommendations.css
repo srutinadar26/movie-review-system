@@ -1,15 +1,22 @@
+/* src/pages/Recommendations.css */
+
 .recommendations {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
+  min-height: 100vh;
+  background: #141414;
 }
 
+/* Header Section */
 .recommendations h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
   color: #fff;
   position: relative;
   padding-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .recommendations h1::after {
@@ -17,75 +24,98 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100px;
+  width: 80px;
   height: 4px;
   background: linear-gradient(90deg, #e50914, #ff4d4d);
   border-radius: 2px;
 }
 
+/* Welcome Message */
 .welcome-message {
   background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
   padding: 2rem;
   border-radius: 12px;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   border-left: 4px solid #e50914;
 }
 
 .welcome-message h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: #fff;
 }
 
 .welcome-message p {
   color: #999;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
+/* Recommendation Sections */
 .recommendation-section {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .recommendation-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
   color: #fff;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  padding-left: 1rem;
 }
 
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1.5rem;
+.recommendation-section h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #e50914;
+  border-radius: 2px;
 }
 
 /* Genre Section */
 .genre-section {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .genre-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
   color: #fff;
+  padding-left: 1rem;
+  position: relative;
 }
 
+.genre-section h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #e50914;
+  border-radius: 2px;
+}
+
+/* Genre Buttons */
 .genre-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.8rem;
   margin-bottom: 2rem;
 }
 
 .genre-btn {
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   background: #2a2a2a;
   border: 1px solid #444;
-  border-radius: 25px;
+  border-radius: 30px;
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -101,14 +131,23 @@
   border-color: #e50914;
 }
 
+/* Genre Movies */
 .genre-movies {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .genre-movies h3 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   color: #999;
+}
+
+/* Movies Grid */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 /* Empty State */
@@ -118,45 +157,182 @@
   background: #1f1f1f;
   border-radius: 12px;
   border: 2px dashed #444;
+  margin: 3rem 0;
 }
 
 .empty-state p {
   color: #999;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
 .empty-state p:first-child {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #fff;
   margin-bottom: 1rem;
 }
 
-/* Responsive */
+/* Loading State */
+.recommendations-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #333;
+  border-top-color: #e50914;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Genre Loading */
+.genre-loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Browse Movies Button */
+.browse-movies-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.browse-movies-btn:hover {
+  background: #ff4d4d;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .movies-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .recommendations {
+    padding: 1.5rem;
+  }
+  
+  .recommendations h1 {
+    font-size: 1.8rem;
+  }
+  
+  .welcome-message h2 {
+    font-size: 1.3rem;
+  }
+}
+
 @media (max-width: 768px) {
   .recommendations {
     padding: 1rem;
   }
-
+  
   .recommendations h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
-
+  
+  .welcome-message {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
   .welcome-message h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
-
-  .recommendation-section h2 {
-    font-size: 1.5rem;
+  
+  .recommendation-section h2,
+  .genre-section h2 {
+    font-size: 1.2rem;
   }
-
+  
   .movies-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
-
+  
+  .genre-buttons {
+    gap: 0.6rem;
+  }
+  
   .genre-btn {
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 1.2rem;
     font-size: 0.85rem;
+  }
+  
+  .empty-state {
+    padding: 3rem 1.5rem;
+  }
+  
+  .empty-state p:first-child {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  
+  .recommendations h1 {
+    font-size: 1.3rem;
+  }
+  
+  .welcome-message {
+    padding: 1rem;
+  }
+  
+  .welcome-message h2 {
+    font-size: 1rem;
+  }
+  
+  .welcome-message p {
+    font-size: 0.85rem;
+  }
+  
+  .recommendation-section h2,
+  .genre-section h2 {
+    font-size: 1rem;
+  }
+  
+  .genre-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .empty-state p {
+    font-size: 0.9rem;
+  }
+  
+  .empty-state p:first-child {
+    font-size: 1rem;
+  }
+  
+  .browse-movies-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
   }
 }

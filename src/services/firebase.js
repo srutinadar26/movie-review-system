@@ -1,5 +1,5 @@
+// src/services/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { 
   getAuth, 
   createUserWithEmailAndPassword,
@@ -11,8 +11,6 @@ import {
 import { 
   getFirestore, 
   doc,
-  updateDoc,
-  arrayUnion,
   setDoc,
   getDoc
 } from 'firebase/firestore';
@@ -23,18 +21,15 @@ const firebaseConfig = {
   projectId: "movie-review-website-99d10",
   storageBucket: "movie-review-website-99d10.firebasestorage.app",
   messagingSenderId: "318212049048",
-  appId: "1:318212049048:web:f753b8dd7c5abe449ae8ed",
-  measurementId: "G-8LJWKZCZZ5"
+  appId: "1:318212049048:web:c9cf26d0767e12349ae8ed",
+  measurementId: "G-1JDV8KLN77"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// Comment out analytics if not using
-// const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Register new user
+// Register user
 export const registerUser = async (email, password, displayName) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -45,9 +40,6 @@ export const registerUser = async (email, password, displayName) => {
       email,
       displayName,
       createdAt: new Date().toISOString(),
-      favoriteGenres: [],
-      watchlist: [],
-      reviews: []
     });
     
     return { success: true, user: userCredential.user };
@@ -84,6 +76,9 @@ export const loginUser = async (email, password) => {
       case 'auth/wrong-password':
         errorMessage = 'Incorrect password';
         break;
+      case 'auth/invalid-email':
+        errorMessage = 'Invalid email address';
+        break;
       default:
         errorMessage = error.message;
     }
@@ -104,32 +99,6 @@ export const logoutUser = async () => {
 // Auth state observer
 export const onAuthStateChange = (callback) => {
   return onAuthStateChanged(auth, callback);
-};
-
-// Add to watchlist
-export const addToWatchlist = async (userId, movie) => {
-  try {
-    const userRef = doc(db, 'users', userId);
-    await updateDoc(userRef, {
-      watchlist: arrayUnion(movie)
-    });
-    return { success: true };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
-
-// Get user data
-export const getUserData = async (userId) => {
-  try {
-    const userDoc = await getDoc(doc(db, 'users', userId));
-    if (userDoc.exists()) {
-      return { success: true, data: userDoc.data() };
-    }
-    return { success: false, error: 'User not found' };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
 };
 
 export { auth, db };

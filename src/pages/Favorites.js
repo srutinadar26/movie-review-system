@@ -1,6 +1,6 @@
+// src/pages/Favorites.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MovieCard from '../components/MovieCard';
 import { useAuth } from '../context/AuthContext';
 import { getFavorites, removeFromFavorites } from '../utils/storage';
 import toast from 'react-hot-toast';
@@ -13,7 +13,6 @@ const Favorites = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Redirect if not logged in
     if (!currentUser) {
       toast.error('Please login to view your favorites');
       navigate('/login');
@@ -25,6 +24,7 @@ const Favorites = () => {
   const loadFavorites = () => {
     setLoading(true);
     const favs = getFavorites();
+    console.log('Favorites loaded:', favs); // Debug log
     setFavorites(favs);
     setLoading(false);
   };
@@ -39,7 +39,10 @@ const Favorites = () => {
     return (
       <div className="favorites">
         <h1>My Favorites</h1>
-        <div className="favorites-loading">Loading your favorites...</div>
+        <div className="favorites-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading your favorites...</p>
+        </div>
       </div>
     );
   }
@@ -66,12 +69,38 @@ const Favorites = () => {
           </p>
           <div className="favorites-grid">
             {favorites.map(movie => (
-              <MovieCard
-                key={movie.id}
-                movie={movie}
-                onAddToFavorites={handleRemoveFromFavorites}
-                isFavorite={true}
-              />
+              <div key={movie.id} className="favorite-movie-card">
+                <div className="movie-poster">
+                  {movie.poster_path ? (
+                    <img 
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                      alt={movie.title}
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/500x750?text=No+Image';
+                      }}
+                    />
+                  ) : (
+                    <div className="no-image">No Image</div>
+                  )}
+                </div>
+                <div className="movie-info">
+                  <h3 className="movie-title">{movie.title}</h3>
+                  <div className="movie-meta">
+                    <span className="movie-year">
+                      {movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}
+                    </span>
+                    <span className="movie-rating">
+                      ⭐ {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}
+                    </span>
+                  </div>
+                  <button 
+                    className="remove-favorite-btn"
+                    onClick={() => handleRemoveFromFavorites(movie)}
+                  >
+                    Remove from Favorites
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </>

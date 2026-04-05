@@ -5,11 +5,10 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   background-color: #141414;
   color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .app {
@@ -17,39 +16,36 @@ body {
 }
 
 .main-content {
-  padding-top: 80px;
-  min-height: calc(100vh - 80px);
+  padding-top: 76px;
+  min-height: calc(100vh - 76px);
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 10px;
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: #444; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #e50914; }
+
+/* Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Loading Spinner */
+/* Loading */
 .loading {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 400px;
-  font-size: 1.2rem;
+  min-height: 60vh;
+  gap: 1rem;
+  font-size: 1.1rem;
   color: #e50914;
 }
 
-/* Error Message */
+/* Error */
 .error {
   text-align: center;
   padding: 2rem;
@@ -57,20 +53,19 @@ body {
   font-size: 1.1rem;
 }
 
-/* Container for pages */
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* Responsive Design */
+/* ── Responsive ── */
 @media (max-width: 768px) {
   .main-content {
+    /* Extra room for mobile search bar below navbar */
     padding-top: 120px;
   }
-  
   .container {
     padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-top: 115px;
   }
 }

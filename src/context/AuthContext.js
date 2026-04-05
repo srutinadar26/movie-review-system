@@ -1,10 +1,17 @@
+// src/context/AuthContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { onAuthStateChange, logoutUser } from '../services/firebase';
 import toast from 'react-hot-toast';
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -40,3 +47,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+// Also export as default for compatibility
+export default AuthProvider;
