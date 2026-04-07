@@ -2,11 +2,13 @@
 ### *Your Personal Cinema Universe — Discover. Review. Experience.*
 
 ---
-🔗Live Demo:
-https://movie-review-system-wb8d.vercel.app/
----
+
+## 🌐 Live Demo 
+
+🔗 https://movie-review-system-wb8d.vercel.app/
 
 ---
+
 ## 🌌 Overview
 
 **Movie Review System** is a production-grade, full-stack web application inspired by platforms like Netflix and IMDb. Built using React and Firebase, it allows users to explore, review, and personalize their movie journey across a catalog of **50,000+ films spanning 30+ languages and global regions**.
