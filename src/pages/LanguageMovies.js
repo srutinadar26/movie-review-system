@@ -101,6 +101,10 @@ const LanguageMovies = () => {
     loadFavorites();
   };
 
+  const handleMovieClick = (movieId) => {
+    navigate(`/movie/${movieId}`);
+  };
+
   if (loading && movies.length === 0) {
     return <LoadingSpinner />;
   }
@@ -144,16 +148,22 @@ const LanguageMovies = () => {
         </div>
       </div>
 
-      {/* Movies Grid */}
+      {/* Movies Grid - WITH CLICKABLE WRAPPER */}
       {movies.length > 0 ? (
         <div className="movies-grid">
           {movies.map(movie => (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onAddToFavorites={handleAddToFavorites}
-              isFavorite={favorites.some(fav => fav.id === movie.id)}
-            />
+            <div 
+              key={movie.id} 
+              className="movie-card-wrapper"
+              onClick={() => handleMovieClick(movie.id)}
+              style={{ cursor: 'pointer' }}
+            >
+              <MovieCard
+                movie={movie}
+                onAddToFavorites={handleAddToFavorites}
+                isFavorite={favorites.some(fav => fav.id === movie.id)}
+              />
+            </div>
           ))}
         </div>
       ) : (

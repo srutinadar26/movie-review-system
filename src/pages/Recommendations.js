@@ -68,6 +68,10 @@ const Recommendations = () => {
     loadFavorites();
   };
 
+  const handleMovieClick = (movieId) => {
+    navigate(`/movie/${movieId}`);
+  };
+
   const loadAllData = async () => {
     // Get user's favorite movies
     const userFavorites = getFavorites();
@@ -131,7 +135,7 @@ const Recommendations = () => {
 
   return (
     <div className="recommendations">
-      <h1>🎬 Movie Recommendations</h1>
+      <h1>Movie Recommendations</h1>
       
       {currentUser && (
         <div className="welcome-message">
@@ -143,15 +147,21 @@ const Recommendations = () => {
       {/* Personalized Recommendations */}
       {!loading.recommendations && recommendations.length > 0 && (
         <section className="recommendation-section">
-          <h2>✨ Personalized For You</h2>
+          <h2>Personalized For You</h2>
           <div className="movies-grid">
             {recommendations.map(movie => (
-              <MovieCard 
+              <div 
                 key={movie.id} 
-                movie={movie}
-                onAddToFavorites={handleAddToFavorites}
-                isFavorite={favorites.some(fav => fav.id === movie.id)}
-              />
+                className="movie-card-wrapper"
+                onClick={() => handleMovieClick(movie.id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <MovieCard 
+                  movie={movie}
+                  onAddToFavorites={handleAddToFavorites}
+                  isFavorite={favorites.some(fav => fav.id === movie.id)}
+                />
+              </div>
             ))}
           </div>
         </section>
@@ -160,15 +170,21 @@ const Recommendations = () => {
       {/* Trending Movies */}
       {!loading.trending && trending.length > 0 && (
         <section className="recommendation-section">
-          <h2>🔥 Trending This Week</h2>
+          <h2>Trending This Week</h2>
           <div className="movies-grid">
             {trending.map(movie => (
-              <MovieCard 
+              <div 
                 key={movie.id} 
-                movie={movie}
-                onAddToFavorites={handleAddToFavorites}
-                isFavorite={favorites.some(fav => fav.id === movie.id)}
-              />
+                className="movie-card-wrapper"
+                onClick={() => handleMovieClick(movie.id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <MovieCard 
+                  movie={movie}
+                  onAddToFavorites={handleAddToFavorites}
+                  isFavorite={favorites.some(fav => fav.id === movie.id)}
+                />
+              </div>
             ))}
           </div>
         </section>
@@ -177,7 +193,7 @@ const Recommendations = () => {
       {/* Genre Explorer */}
       {genres.length > 0 && (
         <section className="genre-section">
-          <h2>🎯 Explore by Genre</h2>
+          <h2>Explore by Genre</h2>
           <div className="genre-buttons">
             {genres.map(genre => (
               <button
@@ -195,12 +211,18 @@ const Recommendations = () => {
               <h3>Popular in {genres.find(g => g.id === selectedGenre)?.name}</h3>
               <div className="movies-grid">
                 {genreMovies.map(movie => (
-                  <MovieCard 
+                  <div 
                     key={movie.id} 
-                    movie={movie}
-                    onAddToFavorites={handleAddToFavorites}
-                    isFavorite={favorites.some(fav => fav.id === movie.id)}
-                  />
+                    className="movie-card-wrapper"
+                    onClick={() => handleMovieClick(movie.id)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <MovieCard 
+                      movie={movie}
+                      onAddToFavorites={handleAddToFavorites}
+                      isFavorite={favorites.some(fav => fav.id === movie.id)}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
@@ -216,15 +238,21 @@ const Recommendations = () => {
       {/* Upcoming Movies */}
       {!loading.upcoming && upcoming.length > 0 && (
         <section className="recommendation-section">
-          <h2>📅 Coming Soon</h2>
+          <h2>Coming Soon</h2>
           <div className="movies-grid">
             {upcoming.map(movie => (
-              <MovieCard 
+              <div 
                 key={movie.id} 
-                movie={movie}
-                onAddToFavorites={handleAddToFavorites}
-                isFavorite={favorites.some(fav => fav.id === movie.id)}
-              />
+                className="movie-card-wrapper"
+                onClick={() => handleMovieClick(movie.id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <MovieCard 
+                  movie={movie}
+                  onAddToFavorites={handleAddToFavorites}
+                  isFavorite={favorites.some(fav => fav.id === movie.id)}
+                />
+              </div>
             ))}
           </div>
         </section>
@@ -233,15 +261,21 @@ const Recommendations = () => {
       {/* Top Rated */}
       {!loading.topRated && topRated.length > 0 && (
         <section className="recommendation-section">
-          <h2>⭐ Top Rated of All Time</h2>
+          <h2>Top Rated of All Time</h2>
           <div className="movies-grid">
             {topRated.map(movie => (
-              <MovieCard 
+              <div 
                 key={movie.id} 
-                movie={movie}
-                onAddToFavorites={handleAddToFavorites}
-                isFavorite={favorites.some(fav => fav.id === movie.id)}
-              />
+                className="movie-card-wrapper"
+                onClick={() => handleMovieClick(movie.id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <MovieCard 
+                  movie={movie}
+                  onAddToFavorites={handleAddToFavorites}
+                  isFavorite={favorites.some(fav => fav.id === movie.id)}
+                />
+              </div>
             ))}
           </div>
         </section>

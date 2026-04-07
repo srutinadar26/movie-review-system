@@ -123,6 +123,10 @@ const FilterMovies = () => {
     loadFavorites();
   };
 
+  const handleMovieClick = (movieId) => {
+    navigate(`/movie/${movieId}`);
+  };
+
   const searchMovies = async () => {
     setLoading(true);
     
@@ -173,7 +177,7 @@ const FilterMovies = () => {
   return (
     <div className="filter-page">
       <div className="filter-header">
-        <h1>🎯 Filter Movies</h1>
+        <h1>Filter Movies</h1>
         <p>Find the perfect movie with advanced filters</p>
       </div>
 
@@ -196,10 +200,7 @@ const FilterMovies = () => {
             <div className="filter-grid">
               {/* Language Filter */}
               <div className="filter-group">
-                <label>
-                  <span className="filter-icon">🌐</span>
-                  Language
-                </label>
+                <label>Language</label>
                 <select
                   value={selectedLanguage}
                   onChange={(e) => setSelectedLanguage(e.target.value)}
@@ -215,10 +216,7 @@ const FilterMovies = () => {
 
               {/* Genre Filter */}
               <div className="filter-group">
-                <label>
-                  <span className="filter-icon">🎬</span>
-                  Genre
-                </label>
+                <label>Genre</label>
                 <select
                   value={selectedGenre}
                   onChange={(e) => setSelectedGenre(e.target.value)}
@@ -234,10 +232,7 @@ const FilterMovies = () => {
 
               {/* Year Filter */}
               <div className="filter-group">
-                <label>
-                  <span className="filter-icon">📅</span>
-                  Year
-                </label>
+                <label>Year</label>
                 <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
@@ -253,10 +248,7 @@ const FilterMovies = () => {
 
               {/* Sort By */}
               <div className="filter-group">
-                <label>
-                  <span className="filter-icon">⚡</span>
-                  Sort By
-                </label>
+                <label>Sort By</label>
                 <select
                   value={selectedSort}
                   onChange={(e) => setSelectedSort(e.target.value)}
@@ -292,7 +284,7 @@ const FilterMovies = () => {
         </div>
       )}
 
-      {/* Movies Grid */}
+      {/* Movies Grid - WITH CLICKABLE WRAPPER */}
       {loading ? (
         <div className="filter-loading">
           <LoadingSpinner />
@@ -303,12 +295,18 @@ const FilterMovies = () => {
             <>
               <div className="movies-grid">
                 {movies.map(movie => (
-                  <MovieCard
-                    key={movie.id}
-                    movie={movie}
-                    onAddToFavorites={handleAddToFavorites}
-                    isFavorite={favorites.some(fav => fav.id === movie.id)}
-                  />
+                  <div 
+                    key={movie.id} 
+                    className="movie-card-wrapper"
+                    onClick={() => handleMovieClick(movie.id)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <MovieCard
+                      movie={movie}
+                      onAddToFavorites={handleAddToFavorites}
+                      isFavorite={favorites.some(fav => fav.id === movie.id)}
+                    />
+                  </div>
                 ))}
               </div>
 
