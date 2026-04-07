@@ -2,7 +2,8 @@
 ### *Your Personal Cinema Universe — Discover. Review. Experience.*
 
 ---
-🔗 **Live Demo:** https://movie-review-system-wb8d.vercel.app/movie/1327819
+🔗Live Demo:
+https://movie-review-system-wb8d.vercel.app/
 ---
 
 ---
