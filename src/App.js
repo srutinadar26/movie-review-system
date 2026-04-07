@@ -12,7 +12,6 @@ import Recommendations from './pages/Recommendations';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import TestAPI from './components/TestAPI';
 import Languages from './pages/Languages';           // NEW: Languages page
 import LanguageMovies from './pages/LanguageMovies'; // NEW: Language movies page
 import './App.css';
@@ -56,7 +55,6 @@ function App() {
               <Route path="/search" element={<SearchResults />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/test-api" element={<TestAPI />} />
               <Route path="/filter" element={<FilterMovies />} />
               
               {/* NEW: Language Routes */}

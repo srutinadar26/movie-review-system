@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_TMDB_API_KEY || '8df1a16f7f310b78a1c9e977430bef71';
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+
+if (!API_KEY) {
+  console.error('TMDB API Key is not configured. Please set REACT_APP_TMDB_API_KEY environment variable.');
+}
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -169,28 +173,23 @@ export const discoverMovies = async (filters = {}, page = 1) => {
 };
 
 export const getProductionCountries = async () => {
-  try {
-    return [
-      { iso_3166_1: 'US', english_name: 'United States' },
-      { iso_3166_1: 'GB', english_name: 'United Kingdom' },
-      { iso_3166_1: 'IN', english_name: 'India' },
-      { iso_3166_1: 'CA', english_name: 'Canada' },
-      { iso_3166_1: 'AU', english_name: 'Australia' },
-      { iso_3166_1: 'FR', english_name: 'France' },
-      { iso_3166_1: 'DE', english_name: 'Germany' },
-      { iso_3166_1: 'IT', english_name: 'Italy' },
-      { iso_3166_1: 'ES', english_name: 'Spain' },
-      { iso_3166_1: 'JP', english_name: 'Japan' },
-      { iso_3166_1: 'KR', english_name: 'South Korea' },
-      { iso_3166_1: 'CN', english_name: 'China' },
-      { iso_3166_1: 'RU', english_name: 'Russia' },
-      { iso_3166_1: 'BR', english_name: 'Brazil' },
-      { iso_3166_1: 'MX', english_name: 'Mexico' }
-    ];
-  } catch (error) {
-    console.error('Error getting countries:', error);
-    return [];
-  }
+  return [
+    { iso_3166_1: 'US', english_name: 'United States' },
+    { iso_3166_1: 'GB', english_name: 'United Kingdom' },
+    { iso_3166_1: 'IN', english_name: 'India' },
+    { iso_3166_1: 'CA', english_name: 'Canada' },
+    { iso_3166_1: 'AU', english_name: 'Australia' },
+    { iso_3166_1: 'FR', english_name: 'France' },
+    { iso_3166_1: 'DE', english_name: 'Germany' },
+    { iso_3166_1: 'IT', english_name: 'Italy' },
+    { iso_3166_1: 'ES', english_name: 'Spain' },
+    { iso_3166_1: 'JP', english_name: 'Japan' },
+    { iso_3166_1: 'KR', english_name: 'South Korea' },
+    { iso_3166_1: 'CN', english_name: 'China' },
+    { iso_3166_1: 'RU', english_name: 'Russia' },
+    { iso_3166_1: 'BR', english_name: 'Brazil' },
+    { iso_3166_1: 'MX', english_name: 'Mexico' }
+  ];
 };
 
 export const getSpokenLanguages = async () => {

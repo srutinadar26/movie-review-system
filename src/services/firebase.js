@@ -11,18 +11,17 @@ import {
 import { 
   getFirestore, 
   doc,
-  setDoc,
-  getDoc
+  setDoc
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBU-CE3vKatQR_pdLPZrVv2AYj-u55Liy8",
-  authDomain: "movie-review-website-99d10.firebaseapp.com",
-  projectId: "movie-review-website-99d10",
-  storageBucket: "movie-review-website-99d10.firebasestorage.app",
-  messagingSenderId: "318212049048",
-  appId: "1:318212049048:web:c9cf26d0767e12349ae8ed",
-  measurementId: "G-1JDV8KLN77"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);

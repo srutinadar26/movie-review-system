@@ -42,7 +42,6 @@ const LanguageMovies = () => {
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -73,8 +72,7 @@ const LanguageMovies = () => {
       setMovies(data.results);
       setTotalPages(data.total_pages);
     } catch (err) {
-      setError('Failed to load movies');
-      console.error(err);
+      console.error('Failed to load movies:', err);
     } finally {
       setLoading(false);
     }

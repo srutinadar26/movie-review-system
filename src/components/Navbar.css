@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to bottom, rgba(20,20,20,0.98) 0%, rgba(20,20,20,0.0) 100%);
+  background: linear-gradient(to bottom, rgba(52, 47, 47, 0.98) 0%, rgba(20,20,20,0.0) 100%);
   z-index: 9999;
   padding: 0.85rem 2rem;
   transition: background 0.4s ease, box-shadow 0.3s ease;
@@ -145,7 +145,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #252525;
+  background: #433131;
   border: 1px solid #383838;
   border-radius: 30px;
   padding: 0.4rem 1rem 0.4rem 0.75rem;
