@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import toast from 'react-hot-toast';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -54,11 +53,11 @@ const Navbar = () => {
     }
   };
 
+  // REMOVED the duplicate toast from here - AuthContext already shows it
   const handleLogout = async () => {
-    await logout();
+    await logout(); // AuthContext already shows the toast message
     setShowUserMenu(false);
     setMobileOpen(false);
-    toast.success('Logged out successfully');
   };
 
   const navLinks = [

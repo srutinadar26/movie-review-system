@@ -37,15 +37,12 @@ const Register = () => {
     }
 
     setLoading(true);
-    console.log('Attempting to register:', { email, displayName }); // Debug log
 
     try {
       const result = await registerUser(email, password, displayName);
-      console.log('Registration result:', result); // Debug log
       
       if (result.success) {
-        toast.success('🎉 Registration successful! Welcome!');
-        // Wait a moment before redirecting
+        toast.success('Registration successful! Welcome!');
         setTimeout(() => {
           navigate('/');
         }, 1500);
@@ -66,7 +63,7 @@ const Register = () => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <h1>🎬 Join MovieReview</h1>
+          <h1>Join MovieReview</h1>
           <p>Create your account and start reviewing</p>
         </div>
 
@@ -128,15 +125,19 @@ const Register = () => {
 
           <button 
             type="submit" 
-            className={`auth-button ${loading ? 'loading' : ''}`}
+            className="auth-button"
             disabled={loading}
           >
             {loading ? 'Creating account...' : 'Sign Up'}
           </button>
         </form>
 
+        <div className="divider">
+          <span>Already have an account?</span>
+        </div>
+
         <div className="auth-footer">
-          <p>Already have an account? <Link to="/login">Sign in</Link></p>
+          <p><Link to="/login">Sign in here</Link></p>
         </div>
       </div>
     </div>

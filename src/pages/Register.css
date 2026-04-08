@@ -1,168 +1,317 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { registerUser } from '../services/firebase';
-import toast from 'react-hot-toast';
-import './Login.css'; // Reuse same CSS
+/* src/pages/Register.css - Responsive Register Styles */
 
-const Register = () => {
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [focused, setFocused] = useState({
-    name: false,
-    email: false,
-    password: false,
-    confirm: false
-  });
-  const navigate = useNavigate();
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #141414 0%, #1a1a1a 100%);
+  position: relative;
+  overflow-x: hidden;
+}
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+/* Animated Background Effect */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(229, 9, 20, 0.08) 0%, transparent 50%);
+  animation: rotate 25s linear infinite;
+  pointer-events: none;
+}
 
-    // Validation
-    if (!displayName || !email || !password || !confirmPassword) {
-      toast.error('Please fill in all fields');
-      return;
-    }
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
-    if (password.length < 6) {
-      toast.error('Password must be at least 6 characters');
-      return;
-    }
+/* Auth Card */
+.auth-card {
+  background: rgba(31, 31, 31, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+  animation: slideUp 0.5s ease;
+}
 
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-      return;
-    }
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    setLoading(true);
-    const result = await registerUser(email, password, displayName);
-    
-    if (result.success) {
-      toast.success('🎉 Registration successful! Welcome!');
-      navigate('/');
-    } else {
-      toast.error(result.error);
-    }
-    
-    setLoading(false);
-  };
+/* Header */
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-  const handleFocus = (field) => {
-    setFocused({ ...focused, [field]: true });
-  };
+.auth-header h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #e50914);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-  const handleBlur = (field, value) => {
-    if (!value) {
-      setFocused({ ...focused, [field]: false });
-    }
-  };
+.auth-header p {
+  color: #999;
+  font-size: 0.9rem;
+}
 
-  return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-header">
-          <h1>🎬 Join MovieReview</h1>
-          <p>Create your account and start reviewing</p>
-        </div>
+/* Form Styles */
+.auth-form {
+  margin-bottom: 1.5rem;
+}
 
-        <form onSubmit={handleSubmit} className="auth-form">
-          <div className={`form-group ${focused.name ? 'focused' : ''}`}>
-            <label>
-              <i className="fas fa-user"></i> Display Name
-            </label>
-            <div className="input-icon">
-              <i className="fas fa-user"></i>
-              <input
-                type="text"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                onFocus={() => handleFocus('name')}
-                onBlur={(e) => handleBlur('name', e.target.value)}
-                placeholder="Choose a username"
-                disabled={loading}
-              />
-            </div>
-          </div>
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
 
-          <div className={`form-group ${focused.email ? 'focused' : ''}`}>
-            <label>
-              <i className="fas fa-envelope"></i> Email
-            </label>
-            <div className="input-icon">
-              <i className="fas fa-envelope"></i>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onFocus={() => handleFocus('email')}
-                onBlur={(e) => handleBlur('email', e.target.value)}
-                placeholder="Enter your email"
-                disabled={loading}
-              />
-            </div>
-          </div>
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
 
-          <div className={`form-group ${focused.password ? 'focused' : ''}`}>
-            <label>
-              <i className="fas fa-lock"></i> Password
-            </label>
-            <div className="input-icon">
-              <i className="fas fa-lock"></i>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onFocus={() => handleFocus('password')}
-                onBlur={(e) => handleBlur('password', e.target.value)}
-                placeholder="Create a password"
-                disabled={loading}
-              />
-            </div>
-            <small className="password-hint">Minimum 6 characters</small>
-          </div>
+.form-group input {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  background: rgba(42, 42, 42, 0.9);
+  border: 2px solid #333;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
 
-          <div className={`form-group ${focused.confirm ? 'focused' : ''}`}>
-            <label>
-              <i className="fas fa-lock"></i> Confirm Password
-            </label>
-            <div className="input-icon">
-              <i className="fas fa-lock"></i>
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                onFocus={() => handleFocus('confirm')}
-                onBlur={(e) => handleBlur('confirm', e.target.value)}
-                placeholder="Confirm your password"
-                disabled={loading}
-              />
-            </div>
-          </div>
+.form-group input:focus {
+  outline: none;
+  border-color: #e50914;
+  background: #333;
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
+}
 
-          <button 
-            type="submit" 
-            className={`auth-button ${loading ? 'loading' : ''}`}
-            disabled={loading}
-          >
-            {loading ? 'Creating account...' : 'Sign Up'}
-          </button>
-        </form>
+.form-group input::placeholder {
+  color: #666;
+}
 
-        <div className="divider">
-          <span>Already have an account?</span>
-        </div>
+/* Password Hint */
+.password-hint {
+  display: block;
+  margin-top: 0.4rem;
+  color: #999;
+  font-size: 0.75rem;
+}
 
-        <div className="auth-footer">
-          <p>
-            <Link to="/login">Sign in here</Link>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+/* Disabled Input */
+.form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
-export default Register;
+/* Auth Button */
+.auth-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #e50914, #ff4d4d);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+}
+
+.auth-button:disabled {
+  background: #444;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Error & Success Messages */
+.auth-error {
+  background: rgba(229, 9, 20, 0.15);
+  border: 2px solid #e50914;
+  color: #ff6b6b;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #666;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 2px solid #333;
+}
+
+.divider span {
+  padding: 0 1rem;
+  font-size: 0.8rem;
+}
+
+/* Auth Footer */
+.auth-footer {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.auth-footer p {
+  color: #999;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.auth-footer a {
+  color: #e50914;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.auth-footer a:hover {
+  color: #ff4d4d;
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 1.5rem;
+  }
+
+  .auth-card {
+    padding: 2rem;
+    max-width: 400px;
+  }
+
+  .auth-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-group input {
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 576px) {
+  .auth-container {
+    padding: 1rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .auth-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group input {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .auth-button {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 380px) {
+  .auth-card {
+    padding: 1.2rem;
+  }
+
+  .auth-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .form-group input {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+/* Landscape Mode on Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .auth-container {
+    min-height: 100vh;
+    padding: 1rem;
+  }
+
+  .auth-card {
+    padding: 1rem;
+    max-width: 450px;
+  }
+
+  .auth-header {
+    margin-bottom: 0.8rem;
+  }
+
+  .auth-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .form-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input {
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .auth-card {
+    background: rgba(20, 20, 20, 0.98);
+  }
+}
