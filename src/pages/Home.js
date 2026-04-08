@@ -220,7 +220,6 @@ const Home = () => {
                 }}
               >
                 <div className="slide-content">
-                  <span className="movie-badge">Trending in Hollywood</span>
                   <h2 className="movie-title">{movie.title}</h2>
                   <p className="movie-overview">{movie.overview}</p>
                   <div className="movie-meta">
