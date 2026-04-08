@@ -20,6 +20,7 @@ const Home = () => {
   // State for different movie categories
   const [heroMovies, setHeroMovies] = useState([]);
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+  const [progressWidth, setProgressWidth] = useState(0);
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -41,15 +42,41 @@ const Home = () => {
     loadAllMovies();
   }, []);
 
-  // Auto-rotate hero carousel
+  // Auto-rotate hero carousel with progress bar
   useEffect(() => {
     if (heroMovies.length > 0) {
-      const interval = setInterval(() => {
-        setCurrentHeroIndex((prev) => (prev + 1) % heroMovies.length);
-      }, 5000); // Change every 5 seconds
-      return () => clearInterval(interval);
+      let interval;
+      let progressInterval;
+      
+      const startAutoRotate = () => {
+        setProgressWidth(0);
+        const startTime = Date.now();
+        
+        progressInterval = setInterval(() => {
+          const elapsed = Date.now() - startTime;
+          const progress = (elapsed / 5000) * 100;
+          setProgressWidth(Math.min(progress, 100));
+        }, 50);
+        
+        interval = setInterval(() => {
+          setCurrentHeroIndex((prev) => (prev + 1) % heroMovies.length);
+          setProgressWidth(0);
+        }, 5000);
+      };
+      
+      startAutoRotate();
+      
+      return () => {
+        clearInterval(interval);
+        clearInterval(progressInterval);
+      };
     }
-  }, [heroMovies]);
+  }, [heroMovies.length]);
+
+  // Reset progress when slide changes manually
+  useEffect(() => {
+    setProgressWidth(0);
+  }, [currentHeroIndex]);
 
   // Load movies when page changes
   useEffect(() => {
@@ -77,22 +104,18 @@ const Home = () => {
 
   const loadHeroMovies = async () => {
     try {
-      // Get now playing movies for hero section
       const nowPlaying = await getNowPlayingMovies(1);
-      // Get popular movies to mix in
       const popular = await getPopularMovies(1);
       
-      // Combine and select top 10 trending Hollywood movies
       const combined = [...nowPlaying.results, ...popular.results]
-        .filter(movie => movie.original_language === 'en') // English/Hollywood movies
+        .filter(movie => movie.original_language === 'en')
         .reduce((unique, movie) => {
-          // Remove duplicates
           if (!unique.some(m => m.id === movie.id)) {
             unique.push(movie);
           }
           return unique;
         }, [])
-        .slice(0, 10); // Take top 10
+        .slice(0, 10);
       
       setHeroMovies(combined);
     } catch (error) {
@@ -159,24 +182,31 @@ const Home = () => {
 
   const nextHero = () => {
     setCurrentHeroIndex((prev) => (prev + 1) % heroMovies.length);
+    setProgressWidth(0);
   };
 
   const prevHero = () => {
     setCurrentHeroIndex((prev) => (prev - 1 + heroMovies.length) % heroMovies.length);
+    setProgressWidth(0);
   };
 
   if (loading) {
     return (
       <div className="home-loading">
         <div className="loading-spinner"></div>
-        <p>Loading your movie experience...</p>
+        <div className="loading-text">Loading</div>
+        <div className="loading-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="home">
-      {/* Hero Carousel - Like Amazon Prime Video */}
+      {/* Hero Carousel - Premium Progress Bar */}
       {heroMovies.length > 0 && (
         <div className="hero-carousel">
           <div className="carousel-container">
@@ -185,7 +215,7 @@ const Home = () => {
                 key={movie.id}
                 className={`carousel-slide ${index === currentHeroIndex ? 'active' : ''}`}
                 style={{
-                  backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%), 
+                  backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.85) 100%), 
                   url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
                 }}
               >
@@ -216,20 +246,17 @@ const Home = () => {
             ))}
           </div>
 
+          {/* Premium Progress Bar instead of Dots */}
+          <div className="carousel-progress" onClick={nextHero}>
+            <div 
+              className="progress-bar" 
+              style={{ width: `${progressWidth}%` }}
+            ></div>
+          </div>
+
           {/* Navigation Arrows */}
           <button className="carousel-arrow prev" onClick={prevHero}>‹</button>
           <button className="carousel-arrow next" onClick={nextHero}>›</button>
-
-          {/* Dots Indicator */}
-          <div className="carousel-dots">
-            {heroMovies.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${index === currentHeroIndex ? 'active' : ''}`}
-                onClick={() => setCurrentHeroIndex(index)}
-              />
-            ))}
-          </div>
         </div>
       )}
 
@@ -290,7 +317,7 @@ const MovieRow = ({ title, movies, currentPage, totalPages, onPageChange, onMovi
             ‹
           </button>
           <span className="page-info">
-            Page {currentPage} of {totalPages}
+            {currentPage} / {totalPages}
           </span>
           <button 
             className="page-btn next"
